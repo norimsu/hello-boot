@@ -20,6 +20,9 @@ public class HelloBootApplication {
     public static void main(String[] args) {
         final ServletWebServerFactory serverFactory = new TomcatServletWebServerFactory();
         final WebServer webServer = serverFactory.getWebServer(servletContext -> {
+
+            final HelloController helloController = new HelloController();
+
             servletContext.addServlet("frontController", new HttpServlet() {
                 @Override
                 protected void service(HttpServletRequest req, HttpServletResponse resp)
@@ -27,9 +30,10 @@ public class HelloBootApplication {
                     // 인증, 보안, 다국어, 공통 처리를 한다고 가정한다.
                     if (req.getRequestURI().equals("/hello") && req.getMethod().equals(HttpMethod.GET.name())) {
                         final String name = req.getParameter("name");
+                        final String ret = helloController.hello(name);
                         resp.setStatus(HttpStatus.OK.value());
                         resp.setHeader(HttpHeaders.CONTENT_TYPE, MediaType.TEXT_PLAIN_VALUE);
-                        resp.getWriter().println("Hello, " + name + "!");
+                        resp.getWriter().println(ret);
                     } else if (req.getRequestURI().equals("/user")) {
                         // 사용자 정보를 조회한다고 가정한다.
                     } else {
