@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.server.WebServer;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
+import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,10 +18,12 @@ import org.springframework.http.MediaType;
 public class HelloBootApplication {
 
     public static void main(String[] args) {
+        final GenericApplicationContext applicationContext = new GenericApplicationContext();
+        applicationContext.registerBean(HelloController.class);
+        applicationContext.refresh();
+
         final ServletWebServerFactory serverFactory = new TomcatServletWebServerFactory();
         final WebServer webServer = serverFactory.getWebServer(servletContext -> {
-
-            final HelloController helloController = new HelloController();
 
             servletContext.addServlet("frontController", new HttpServlet() {
                 @Override
@@ -29,7 +32,10 @@ public class HelloBootApplication {
                     // 인증, 보안, 다국어, 공통 처리를 한다고 가정한다.
                     if (req.getRequestURI().equals("/hello") && req.getMethod().equals(HttpMethod.GET.name())) {
                         final String name = req.getParameter("name");
+
+                        final HelloController helloController = applicationContext.getBean(HelloController.class);
                         final String ret = helloController.hello(name);
+
                         resp.setContentType(MediaType.TEXT_PLAIN_VALUE);
                         resp.getWriter().println(ret);
                     } else {
