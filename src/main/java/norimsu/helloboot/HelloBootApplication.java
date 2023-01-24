@@ -1,9 +1,15 @@
 package norimsu.helloboot;
 
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.server.WebServer;
+import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
+
 public class HelloBootApplication {
 
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
+        final ServletWebServerFactory serverFactory = new TomcatServletWebServerFactory();
+        final WebServer webServer = serverFactory.getWebServer();
+        webServer.start();
     }
 
 }
