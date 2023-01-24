@@ -1,4 +1,4 @@
-package norimsu.helloboot;
+package norimsu.config;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 @Target(ElementType.TYPE)
 @Configuration
 @ComponentScan
+@EnableMyAutoConfiguration
 public @interface MySpringBootApplication {
 
 }

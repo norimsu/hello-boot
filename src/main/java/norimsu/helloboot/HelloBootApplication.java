@@ -2,6 +2,8 @@ package norimsu.helloboot;
 
 import org.springframework.boot.SpringApplication;
 
+import norimsu.config.MySpringBootApplication;
+
 @MySpringBootApplication
 public class HelloBootApplication {
 
