@@ -14,6 +14,7 @@ import norimsu.boot.autoconfigure.condition.ConditionalMyOnClass;
 public class TomcatWebServerConfig {
 
     @Value("${contextPath:}") String contextPath;
+    @Value("${port:8080}") int port;
 
     @Bean("tomcatWebServerFactory")
     @ConditionalOnMissingBean
@@ -21,6 +22,7 @@ public class TomcatWebServerConfig {
         final TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
         System.out.println("contextPath = " + contextPath);
         factory.setContextPath(this.contextPath);
+        factory.setPort(this.port);
         return factory;
     }
 }
