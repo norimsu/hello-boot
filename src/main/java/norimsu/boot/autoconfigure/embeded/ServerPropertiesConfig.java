@@ -1,5 +1,6 @@
 package norimsu.boot.autoconfigure.embeded;
 
+import org.springframework.boot.context.properties.bind.Binder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 
@@ -11,9 +12,6 @@ public class ServerPropertiesConfig {
 
     @Bean
     public ServerProperties serverProperties(Environment env) {
-        final ServerProperties properties = new ServerProperties();
-        properties.setContextPath(env.getProperty("contextPath", ""));
-        properties.setPort(env.getProperty("port", Integer.class, 8080));
-        return properties;
+        return Binder.get(env).bind("", ServerProperties.class).get();
     }
 }
