@@ -11,8 +11,8 @@ public class MyOnClassCondition implements Condition {
 
     @Override
     public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
-        final Map<String, Object> annotationAttributes = metadata.getAnnotationAttributes(ConditionalMyOnClass.class.getName());
-        final String value = (String) annotationAttributes.get("value");
+        final Map<String, Object> attr = metadata.getAnnotationAttributes(ConditionalMyOnClass.class.getName());
+        final String value = (String) attr.get("value");
         return ClassUtils.isPresent(value, context.getClassLoader());
 
     }
