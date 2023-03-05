@@ -21,17 +21,20 @@ class ConditionalTest {
 
     @Test
     void conditional() {
-        // true
-        final ApplicationContextRunner contextRunner = new ApplicationContextRunner();
-        contextRunner.withUserConfiguration(Config1.class).run(context -> {
-            assertThat(context).hasSingleBean(MyBean.class);
+        // conditional true
+        new ApplicationContextRunner().withUserConfiguration(Config1.class).run(context -> {
             assertThat(context).hasSingleBean(Config1.class);
+            assertThat(context).hasSingleBean(MyBean.class);
         });
-        // false
+        // conditional false
         new ApplicationContextRunner().withUserConfiguration(Config2.class).run(context -> {
+            assertThat(context).doesNotHaveBean(Config2.class);
             assertThat(context).doesNotHaveBean(MyBean.class);
-            assertThat(context).doesNotHaveBean(Config1.class);
         });
+    }
+
+    static class MyBean {
+
     }
 
     @Retention(RetentionPolicy.RUNTIME)
@@ -40,29 +43,6 @@ class ConditionalTest {
     @interface BooleanConditional {
 
         boolean value();
-    }
-
-    @Configuration
-    @BooleanConditional(true)
-    static class Config1 {
-
-        @Bean
-        MyBean myBean() {
-            return new MyBean();
-        }
-    }
-
-    @Configuration
-    @BooleanConditional(false)
-    static class Config2 {
-
-        @Bean
-        MyBean myBean() {
-            return new MyBean();
-        }
-    }
-
-    static class MyBean {
 
     }
 
@@ -73,5 +53,27 @@ class ConditionalTest {
             final Map<String, Object> annotationAttributes = metadata.getAnnotationAttributes(BooleanConditional.class.getName());
             return (Boolean) annotationAttributes.get("value");
         }
+    }
+
+    @Configuration
+    @BooleanConditional(true)
+    static class Config1 {
+
+        @Bean
+        MyBean myBean() {
+            return new MyBean();
+        }
+
+    }
+
+    @Configuration
+    @BooleanConditional(false)
+    static class Config2 {
+
+        @Bean
+        MyBean myBean() {
+            return new MyBean();
+        }
+
     }
 }
