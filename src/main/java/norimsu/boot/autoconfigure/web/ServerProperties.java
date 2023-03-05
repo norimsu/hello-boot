@@ -1,7 +1,8 @@
-package norimsu.boot.autoconfigure.embeded;
+package norimsu.boot.autoconfigure.web;
 
-import org.springframework.beans.factory.annotation.Value;
+import norimsu.boot.autoconfigure.MyConfigurationProperties;
 
+@MyConfigurationProperties
 public class ServerProperties {
 
     private String contextPath;

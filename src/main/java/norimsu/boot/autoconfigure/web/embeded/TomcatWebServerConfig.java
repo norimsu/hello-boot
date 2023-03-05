@@ -1,15 +1,18 @@
-package norimsu.boot.autoconfigure.embeded;
+package norimsu.boot.autoconfigure.web.embeded;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
 
 import norimsu.boot.autoconfigure.MyAutoConfiguration;
 import norimsu.boot.autoconfigure.condition.ConditionalMyOnClass;
+import norimsu.boot.autoconfigure.web.ServerProperties;
 
 @MyAutoConfiguration
 @ConditionalMyOnClass("org.apache.catalina.startup.Tomcat")
+@Import(ServerProperties.class)
 public class TomcatWebServerConfig {
 
     @Bean("tomcatWebServerFactory")
