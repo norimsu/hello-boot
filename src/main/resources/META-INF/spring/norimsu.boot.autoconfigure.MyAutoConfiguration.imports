@@ -1,5 +1,6 @@
 norimsu.boot.autoconfigure.context.PropertyPlaceHolderConfig
 norimsu.boot.autoconfigure.context.PropertyPostProcessorConfig
+norimsu.boot.autoconfigure.datasource.DataSourceConfig
 norimsu.boot.autoconfigure.web.embeded.TomcatWebServerConfig
 norimsu.boot.autoconfigure.web.embeded.JettyWebServerConfig
 norimsu.boot.autoconfigure.web.servlet.DispatcherServletConfig
