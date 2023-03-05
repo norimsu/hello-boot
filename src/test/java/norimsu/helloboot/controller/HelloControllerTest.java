@@ -1,4 +1,4 @@
-package norimsu.helloboot;
+package norimsu.helloboot.controller;
 
 import static org.assertj.core.api.Assertions.*;
 

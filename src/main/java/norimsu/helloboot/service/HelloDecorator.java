@@ -1,4 +1,4 @@
-package norimsu.helloboot;
+package norimsu.helloboot.service;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;

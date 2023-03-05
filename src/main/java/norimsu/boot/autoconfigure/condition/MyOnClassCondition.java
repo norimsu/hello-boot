@@ -1,4 +1,4 @@
-package norimsu.boot;
+package norimsu.boot.autoconfigure.condition;
 
 import java.util.Map;
 

@@ -1,3 +1,0 @@
-norimsu.boot.configure.TomcatWebServerConfig
-norimsu.boot.configure.JettyWebServerConfig
-norimsu.boot.configure.DispatcherServletConfig
