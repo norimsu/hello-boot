@@ -1,11 +1,9 @@
 package norimsu.boot.autoconfigure.embeded;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.env.Environment;
 
 import norimsu.boot.autoconfigure.MyAutoConfiguration;
 import norimsu.boot.autoconfigure.condition.ConditionalMyOnClass;
@@ -23,11 +21,4 @@ public class TomcatWebServerConfig {
         return factory;
     }
 
-    @Bean
-    public ServerProperties serverProperties(Environment env) {
-        final ServerProperties properties = new ServerProperties();
-        properties.setContextPath(env.getProperty("contextPath", ""));
-        properties.setPort(env.getProperty("port", Integer.class, 8080));
-        return properties;
-    }
 }
