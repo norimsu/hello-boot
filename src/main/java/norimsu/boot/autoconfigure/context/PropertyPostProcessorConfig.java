@@ -1,5 +1,7 @@
 package norimsu.boot.autoconfigure.context;
 
+import java.util.Map;
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.context.properties.bind.Binder;
@@ -21,7 +23,9 @@ public class PropertyPostProcessorConfig {
                 final MyConfigurationProperties annotation = AnnotationUtils.findAnnotation(bean.getClass(),
                                                                                             MyConfigurationProperties.class);
                 if (annotation == null) return bean;
-                return Binder.get(env).bindOrCreate("", bean.getClass());
+                final Map<String, Object> attr = AnnotationUtils.getAnnotationAttributes(annotation);
+                final String prefix = (String) attr.get("prefix");
+                return Binder.get(env).bindOrCreate(prefix, bean.getClass());
             }
         };
     }

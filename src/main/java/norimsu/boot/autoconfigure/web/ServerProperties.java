@@ -2,7 +2,7 @@ package norimsu.boot.autoconfigure.web;
 
 import norimsu.boot.autoconfigure.MyConfigurationProperties;
 
-@MyConfigurationProperties
+@MyConfigurationProperties(prefix = "server")
 public class ServerProperties {
 
     private String contextPath;
