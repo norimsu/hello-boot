@@ -1,11 +1,11 @@
-package norimsu.config.autoconfig;
+package norimsu.boot.configure;
 
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 
-import norimsu.config.ConditionalMyOnClass;
-import norimsu.config.MyAutoConfiguration;
+import norimsu.boot.ConditionalMyOnClass;
+import norimsu.boot.MyAutoConfiguration;
 
 @MyAutoConfiguration
 @ConditionalMyOnClass("org.apache.catalina.startup.Tomcat")

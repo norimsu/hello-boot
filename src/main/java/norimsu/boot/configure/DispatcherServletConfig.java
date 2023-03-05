@@ -1,9 +1,9 @@
-package norimsu.config.autoconfig;
+package norimsu.boot.configure;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.DispatcherServlet;
 
-import norimsu.config.MyAutoConfiguration;
+import norimsu.boot.MyAutoConfiguration;
 
 @MyAutoConfiguration
 public class DispatcherServletConfig {

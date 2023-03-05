@@ -1,4 +1,4 @@
-package norimsu.config;
+package norimsu.boot;
 
 import java.util.stream.StreamSupport;
 
